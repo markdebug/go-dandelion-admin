@@ -3,13 +3,14 @@ package api
 import (
 	"fmt"
 	routing "github.com/gly-hub/fasthttp-routing"
-	"go-admin-example/gateway/internal/route"
 	"github.com/gly-hub/go-dandelion/application"
 	"github.com/gly-hub/go-dandelion/config"
 	"github.com/gly-hub/go-dandelion/logger"
 	"github.com/gly-hub/toolbox/ip"
 	"github.com/gly-hub/toolbox/stringx"
 	"github.com/spf13/cobra"
+	"go-admin-example/gateway/boot"
+	"go-admin-example/gateway/internal/route"
 	"io/ioutil"
 	"os"
 	"os/signal"
@@ -40,6 +41,8 @@ func setup() {
 	config.InitConfig(env)
 	// 应用初始化
 	application.Init()
+	// 初始化服务方法
+	boot.Init()
 	// 路由初始化
 	route.InitRoute()
 	// 注册头部context链路
@@ -59,20 +62,20 @@ func run() error {
 	}()
 	content, _ := ioutil.ReadFile("./static/gateway.txt")
 	fmt.Println(logger.Green(string(content)))
-    fmt.Println(logger.Green("Server run at:"))
-    fmt.Printf("-  Local:   http://localhost:%d/ \r\n", application.HttpServer().Port())
-    fmt.Printf("-  Network: http://%s:%d/ \r\n", ip.GetLocalHost(), application.HttpServer().Port())
-    fmt.Println()
-    if config.GetEnv() != "production" {
-        fmt.Println(logger.Green("Swagger run at:"))
-        fmt.Printf("-  Local:   http://localhost:%d/api/swagger/index.html \r\n", application.HttpServer().Port())
-        fmt.Printf("-  Network: http://%s:%d/api/swagger/index.html \r\n", ip.GetLocalHost(), application.HttpServer().Port())
-    }
+	fmt.Println(logger.Green("Server run at:"))
+	fmt.Printf("-  Local:   http://localhost:%d/ \r\n", application.HttpServer().Port())
+	fmt.Printf("-  Network: http://%s:%d/ \r\n", ip.GetLocalHost(), application.HttpServer().Port())
+	fmt.Println()
+	if config.GetEnv() != "production" {
+		fmt.Println(logger.Green("Swagger run at:"))
+		fmt.Printf("-  Local:   http://localhost:%d/api/swagger/index.html \r\n", application.HttpServer().Port())
+		fmt.Printf("-  Network: http://%s:%d/api/swagger/index.html \r\n", ip.GetLocalHost(), application.HttpServer().Port())
+	}
 
-    quit := make(chan os.Signal)
-    signal.Notify(quit, os.Interrupt)
-    <-quit
-    fmt.Printf("%s Shutdown Server ... \r\n", stringx.GetCurrentTimeStr())
-    logger.Info("Server exiting")
-    return nil
+	quit := make(chan os.Signal)
+	signal.Notify(quit, os.Interrupt)
+	<-quit
+	fmt.Printf("%s Shutdown Server ... \r\n", stringx.GetCurrentTimeStr())
+	logger.Info("Server exiting")
+	return nil
 }

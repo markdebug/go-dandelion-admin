@@ -8,6 +8,8 @@ import (
 func initAuthRoute(baseRouter *routing.RouteGroup) {
 	authHandler := authorize.AuthController{}
 	// 登录登出
+	//baseRouter.Use(analysis.HttpPrometheus())
 	baseRouter.Post("/login", authHandler.Login)
 	baseRouter.Get("/captcha", authHandler.Captcha)
+	baseRouter.Delete("/logout", authHandler.Logout)
 }

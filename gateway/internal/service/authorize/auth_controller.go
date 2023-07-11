@@ -27,13 +27,32 @@ func (a *AuthController) Login(c *routing.Context) error {
 // @Summary 登录
 // @Description 验证码获取
 // @Tags 基础模块|验证码获取
-// @Param deptName body authModel.CaptchaParams true "登录参数"
+// @Param deptName body authModel.CaptchaParams true "参数"
 // @Success 200 {object} auth.LoginResp "{"code": 200, "data": [...]}"
 // @Router /api/captcha [get]
 func (a *AuthController) Captcha(c *routing.Context) error {
 	var (
 		req  = new(authModel.CaptchaParams)
 		resp = new(authModel.CaptchaResp)
+	)
+	err := application.RpcCall(c, rpcService.AuthorizeService, rpcService.AuthorizeFuncGenerateCaptcha, req, resp)
+	if err != nil {
+		return a.Fail(c, err)
+	}
+	return a.Success(c, resp, "")
+}
+
+// Logout
+// @Summary 登录
+// @Description 注销登录
+// @Tags 基础模块|注销登录
+// @Param deptName body authModel.LoginParams true "参数"
+// @Success 200 {object} auth.LoginResp "{"code": 200, "data": [...]}"
+// @Router /api/logout [delete]
+func (a *AuthController) Logout(c *routing.Context) error {
+	var (
+		req  = new(authModel.LoginParams)
+		resp = new(authModel.LoginResp)
 	)
 	err := application.RpcCall(c, rpcService.AuthorizeService, rpcService.AuthorizeFuncGenerateCaptcha, req, resp)
 	if err != nil {

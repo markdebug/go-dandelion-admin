@@ -9,7 +9,7 @@ logger:
 
 httpServer:
   port: 8099
-  pprof: 8089
+
 
 rpcClient:
   clientName: "gateway"
@@ -26,3 +26,8 @@ tracer:
   traceName: "gateway"
   host: "127.0.0.1:6831"
 
+analysisServer:
+  type: "http"
+  port: 8089
+  serviceName: "gateway"
+  prometheus: true

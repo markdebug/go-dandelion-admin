@@ -60,3 +60,14 @@ captcha:
   bkgColors:
     - B: 255
       A: 255
+
+jwt:
+  model: "unique"
+  key: "go-admin-example-123456"
+  expireTime: 60*60*24
+
+analysisServer:
+  type: "rpc"
+  port: 8999
+  serviceName: "authorize"
+  prometheus: true
