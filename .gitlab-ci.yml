@@ -4,5 +4,7 @@ stages: # 分段
 deploy-job:
   stage: deploy
   script:
-    - echo "abc"
-    - echo "123"
+    - cd authorize
+    - docker build -t authorize .
+    - if [ $(docker ps -aq --filter name= authorize) ]; then docker rm -f authorize;fi
+    - docker run -d
