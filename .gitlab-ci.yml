@@ -1,5 +1,3 @@
-image: docker:stable
-
 stages: # 分段
   - build
   - deploy
@@ -13,4 +11,5 @@ build-image:
 deploy-project:
   stage: deploy
   script:
+    - docker-compose -f authorize-docker-compose.yml down
     - docker-compose -f authorize-docker-compose.yml up -d
