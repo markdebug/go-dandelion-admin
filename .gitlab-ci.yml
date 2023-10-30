@@ -1,18 +1,26 @@
 stages: # 分段
-  - authorize
-  - gateway
+  - build-authorize
+  - deploy-authorize
+  - build-gateway
+  - deploy-gateway
 
-构建部署authorize服务:
-  stage: authorize
+构建authorize镜像:
+  stage: build-authorize
   script:
     - docker build -f ./authorize/docker/Dockerfile -t authorize .
+
+部署authorize服务:
+  stage: deploy-authorize
     - docker-compose -f ./authorize/docker/docker-compose.yml down
     - docker-compose -f ./authorize/docker/docker-compose.yml up -d
 
-构建部署gateway服务:
+构建gateway镜像:
   stage: authorize
   script:
     - docker build -f ./gateway/docker/Dockerfile -t gateway .
+
+部署gateway服务:
+  stage: deploy-gateway
     - docker-compose -f ./gateway/docker/docker-compose.yml down
     - docker-compose -f ./gateway/docker/docker-compose.yml up -d
 

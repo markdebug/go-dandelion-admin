@@ -1,6 +1,7 @@
 package boot
 
 import (
+	"github.com/team-dandelion/analysis-plug"
 	"github.com/team-dandelion/go-dandelion/application"
 )
 
