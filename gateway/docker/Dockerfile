@@ -20,7 +20,7 @@ ENV DANDELION_ENV=develop
 
 WORKDIR /opt/app
 
-COPY --from=builder /go-admin/gateway/authorize .
+COPY --from=builder /go-admin/gateway/gateway .
 COPY --from=builder /go-admin/gateway/config ./config
 EXPOSE 8999
-CMD ["/opt/app/authorize", "server"]
+CMD ["/opt/app/gateway", "server"]
