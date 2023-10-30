@@ -8,7 +8,7 @@ ENV GO111MODULE=on \
 
 WORKDIR /go-admin
 
-COPY . .
+COPY authorize .
 
 RUN go mod tidy && go build -a -o authorize ./authorize
 
