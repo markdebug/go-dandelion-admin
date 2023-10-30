@@ -3,9 +3,9 @@ package logic
 import (
 	"github.com/gly-hub/dandelion-plugs/captcha"
 	"github.com/gly-hub/dandelion-plugs/jwt"
-	"github.com/gly-hub/go-dandelion/application"
-	"github.com/gly-hub/go-dandelion/logger"
 	"github.com/rs/xid"
+	"github.com/team-dandelion/go-dandelion/application"
+	"github.com/team-dandelion/go-dandelion/logger"
 	"go-admin-example/authorize/internal/dao"
 	"go-admin-example/authorize/internal/enum"
 	"go-admin-example/authorize/internal/model"

@@ -1,8 +1,7 @@
 package boot
 
 import (
-	"github.com/gly-hub/analysis-plug"
-	"github.com/gly-hub/go-dandelion/application"
+	"github.com/team-dandelion/go-dandelion/application"
 )
 
 func Init() {

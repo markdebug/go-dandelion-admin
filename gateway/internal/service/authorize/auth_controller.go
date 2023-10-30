@@ -2,8 +2,8 @@ package authorize
 
 import (
 	routing "github.com/gly-hub/fasthttp-routing"
-	"github.com/gly-hub/go-dandelion/application"
-	"github.com/gly-hub/go-dandelion/server/http"
+	"github.com/team-dandelion/go-dandelion/application"
+	"github.com/team-dandelion/go-dandelion/server/http"
 	authModel "go-admin-example/common/model/authorize"
 	rpcService "go-admin-example/common/service"
 )

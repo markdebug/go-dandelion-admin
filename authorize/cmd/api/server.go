@@ -2,13 +2,13 @@ package api
 
 import (
 	"fmt"
-	"go-admin-example/authorize/boot"
-	"go-admin-example/authorize/internal/service"
-	"github.com/gly-hub/go-dandelion/application"
-	"github.com/gly-hub/go-dandelion/config"
-	"github.com/gly-hub/go-dandelion/logger"
 	"github.com/gly-hub/toolbox/stringx"
 	"github.com/spf13/cobra"
+	"github.com/team-dandelion/go-dandelion/application"
+	"github.com/team-dandelion/go-dandelion/config"
+	"github.com/team-dandelion/go-dandelion/logger"
+	"go-admin-example/authorize/boot"
+	"go-admin-example/authorize/internal/service"
 	"io/ioutil"
 	"os"
 	"os/signal"
@@ -54,6 +54,6 @@ func run() error {
 	signal.Notify(quit, os.Interrupt)
 	<-quit
 	fmt.Printf("%s Shutdown Server ... \r\n", stringx.GetCurrentTimeStr())
-    logger.Info("Server exiting")
-    return nil
+	logger.Info("Server exiting")
+	return nil
 }

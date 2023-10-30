@@ -1,6 +1,6 @@
 package enum
 
-import error_support "github.com/gly-hub/go-dandelion/error-support"
+import error_support "github.com/team-dandelion/go-dandelion/error-support"
 
 // 基础错误码
 var (

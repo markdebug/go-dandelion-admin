@@ -2,8 +2,8 @@ package service
 
 import (
 	"context"
-	errorx "github.com/gly-hub/go-dandelion/error-support"
-	"github.com/gly-hub/go-dandelion/server/rpcx"
+	errorx "github.com/team-dandelion/go-dandelion/error-support"
+	"github.com/team-dandelion/go-dandelion/server/rpcx"
 	"go-admin-example/authorize/internal/logic"
 	"go-admin-example/common/model/authorize"
 )

@@ -2,21 +2,14 @@ module go-admin-example
 
 go 1.20
 
-replace (
-	github.com/gly-hub/analysis-plug v0.0.0 => ../analysis-plug
-	github.com/gly-hub/dandelion-plugs v0.0.0-20230703105355-03f75f8244b2 => ../plugs
-	github.com/gly-hub/go-dandelion v1.2.1-0.20230630080653-cc829c57621f => ../go-dandelion
-)
-
 require (
-	github.com/gly-hub/analysis-plug v0.0.0
-	github.com/gly-hub/dandelion-plugs v0.0.0-20230703105355-03f75f8244b2
+	github.com/gly-hub/dandelion-plugs v0.0.0-20231030042127-6d87ac2dffcf
 	github.com/gly-hub/fasthttp-routing v0.0.0-20230103092213-f65d0ebb75bb
-	github.com/gly-hub/go-dandelion v1.2.1-0.20230630080653-cc829c57621f
-	github.com/gly-hub/toolbox v0.0.0-20230630080251-549cc05ae707
+	github.com/gly-hub/toolbox v0.0.0-20230630080251-d1ee57b14759
 	github.com/rs/xid v1.4.0
-	github.com/spf13/cast v1.5.1
-	github.com/spf13/cobra v1.7.0
+	github.com/spf13/cast v1.5.0
+	github.com/spf13/cobra v0.0.3
+	github.com/team-dandelion/go-dandelion v1.3.0
 	gorm.io/gorm v1.24.7-0.20230306060331-85eaf9eeda11
 )
 
@@ -55,7 +48,7 @@ require (
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/golang/mock v1.6.0 // indirect
-	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/gomodule/redigo v1.8.9 // indirect
 	github.com/google/pprof v0.0.0-20230228050547-1710fef4ab10 // indirect
@@ -71,7 +64,7 @@ require (
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/hashicorp/serf v0.10.1 // indirect
-	github.com/inconshreveable/mousetrap v1.1.0 // indirect
+	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
 	github.com/jackc/pgx/v5 v5.3.0 // indirect
@@ -89,7 +82,7 @@ require (
 	github.com/mailru/easyjson v0.7.6 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.17 // indirect
-	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
+	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
 	github.com/miekg/dns v1.1.51 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
@@ -103,10 +96,10 @@ require (
 	github.com/petermattis/goid v0.0.0-20230317030725-371a4b8eda08 // indirect
 	github.com/philhofer/fwd v1.1.2 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/prometheus/client_golang v1.16.0 // indirect
-	github.com/prometheus/client_model v0.3.0 // indirect
-	github.com/prometheus/common v0.42.0 // indirect
-	github.com/prometheus/procfs v0.10.1 // indirect
+	github.com/prometheus/client_golang v1.11.1 // indirect
+	github.com/prometheus/client_model v0.2.0 // indirect
+	github.com/prometheus/common v0.26.0 // indirect
+	github.com/prometheus/procfs v0.6.0 // indirect
 	github.com/quic-go/qtls-go1-19 v0.3.2 // indirect
 	github.com/quic-go/qtls-go1-20 v0.2.2 // indirect
 	github.com/quic-go/quic-go v0.34.0 // indirect
@@ -129,6 +122,7 @@ require (
 	github.com/subosito/gotenv v1.4.2 // indirect
 	github.com/swaggo/files v1.0.0 // indirect
 	github.com/swaggo/swag v1.8.10 // indirect
+	github.com/team-dandelion/analysis-plug v0.0.0-20231030045122-1d0b446f4ca2 // indirect
 	github.com/templexxx/cpufeat v0.0.0-20180724012125-cef66df7f161 // indirect
 	github.com/templexxx/xor v0.0.0-20191217153810-f85b25db303b // indirect
 	github.com/tinylib/msgp v1.1.8 // indirect
@@ -138,7 +132,7 @@ require (
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	github.com/valyala/fasthttp v1.48.0 // indirect
+	github.com/valyala/fasthttp v1.45.0 // indirect
 	github.com/valyala/fastrand v1.1.0 // indirect
 	github.com/vmihailenco/msgpack/v5 v5.3.5 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
@@ -155,13 +149,13 @@ require (
 	golang.org/x/image v0.8.0 // indirect
 	golang.org/x/mod v0.9.0 // indirect
 	golang.org/x/net v0.8.0 // indirect
-	golang.org/x/sync v0.2.0 // indirect
-	golang.org/x/sys v0.8.0 // indirect
+	golang.org/x/sync v0.1.0 // indirect
+	golang.org/x/sys v0.6.0 // indirect
 	golang.org/x/text v0.10.0 // indirect
 	golang.org/x/tools v0.7.0 // indirect
 	google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f // indirect
 	google.golang.org/grpc v1.53.0 // indirect
-	google.golang.org/protobuf v1.30.0 // indirect
+	google.golang.org/protobuf v1.29.1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
