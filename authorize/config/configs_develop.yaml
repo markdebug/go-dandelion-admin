@@ -27,13 +27,13 @@ db:
   slowThreshold: "100ms"
   master:
     user: "root"
-    password: "starunion"
+    password: "123456"
     host: "192.168.101.24"
     port: "3306"
     database: "go-admin"
   slave:
     - user: "root"
-      password: "starunion"
+      password: "123456"
       host: "192.168.101.24"
       port: "3306"
       database: "go-admin"
