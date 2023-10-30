@@ -6,11 +6,13 @@ ENV GO111MODULE=on \
     GOARCH=amd64 \
     GOPROXY=https://goproxy.cn,direct
 
-WORKDIR go-admin
+WORKDIR /go-admin
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOARCH=amd64 GOOS=linux go build -a -o authorize .
+WORKDIR /go-admin/authorize
+
+RUN go build -a -o authorize .
 
 FROM alpine as final
 
