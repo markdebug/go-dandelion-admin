@@ -1,0 +1,6 @@
+version: "3"
+services:
+  authorizeService:
+    image: authorize:latest
+    ports:
+      - "8999:8999"

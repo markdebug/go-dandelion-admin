@@ -16,9 +16,11 @@ FROM alpine as final
 
 RUN apk add --no-cache tzdata
 ENV TZ="Asia/Shanghai"
+ENV DANDELION_ENV=develop
 
 WORKDIR /opt/app
 
 COPY --from=builder /go-admin/authorize/authorize .
+COPY --from=builder /go-admin/authorize/config ./config
 EXPOSE 8999
-CMD ["/opt/app/authorize"]
+CMD ["/opt/app/authorize", "server"]

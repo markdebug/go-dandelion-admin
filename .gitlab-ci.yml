@@ -1,9 +1,16 @@
+image: docker:stable
+
 stages: # 分段
+  - build
   - deploy
 
-deploy-job:
+build-image:
+  stage: build
+  script:
+    - docker build --build-arg env=develop -t authorize .
+    - if [ $(docker ps -aq --filter name= authorize) ]; then docker rm -f authorize;fi
+
+deploy-project:
   stage: deploy
   script:
-    - docker build -t authorize .
-    - if [ $(docker ps -aq --filter name= authorize) ]; then docker rm -f authorize;fi
-    - docker run -d
+    - docker-compose -f authorize-docker-compose.yml up -d
