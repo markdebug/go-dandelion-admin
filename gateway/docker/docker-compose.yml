@@ -1,7 +1,8 @@
 version: "3"
 services:
   authorizeService:
-    image: authorize:latest
-    container_name: authorize-server
+    image: gateway:latest
+    container_name: gateway-server
     ports:
-      - "8999:8999"
+      - "8099:8099"
+      - "8089:8089"

@@ -4,4 +4,6 @@ services:
     image: authorize:latest
     container_name: authorize-server
     ports:
+      - "8899:8899"
+      - "18899:18899"
       - "8999:8999"
