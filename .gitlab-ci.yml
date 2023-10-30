@@ -5,14 +5,14 @@ stages: # 分段
 构建部署authorize服务:
   stage: authorize
   script:
-    - docker build -f /authorize/docker/Dockerfile -t authorize .
-    - docker-compose -f /authorize/docker/docker-compose.yml down
-    - docker-compose -f /authorize/docker/docker-compose.yml up -d
+    - docker build -f ./authorize/docker/Dockerfile -t authorize .
+    - docker-compose -f ./authorize/docker/docker-compose.yml down
+    - docker-compose -f ./authorize/docker/docker-compose.yml up -d
 
 构建部署gateway服务:
   stage: authorize
   script:
-    - docker build -f /gateway/docker/Dockerfile -t gateway .
-    - docker-compose -f /gateway/docker/docker-compose.yml down
-    - docker-compose -f /gateway/docker/docker-compose.yml up -d
+    - docker build -f ./gateway/docker/Dockerfile -t gateway .
+    - docker-compose -f ./gateway/docker/docker-compose.yml down
+    - docker-compose -f ./gateway/docker/docker-compose.yml up -d
 
