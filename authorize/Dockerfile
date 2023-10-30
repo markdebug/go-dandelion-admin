@@ -10,9 +10,7 @@ WORKDIR /go-admin
 
 COPY . .
 
-WORKDIR /go-admin/authorize
-
-RUN go build -a -o authorize .
+RUN go build -a -o authorize ./authorize
 
 FROM alpine as final
 
