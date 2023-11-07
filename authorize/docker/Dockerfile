@@ -13,11 +13,6 @@ COPY . .
 RUN go mod tidy && go build -a -o authorize ./authorize
 
 FROM alpine as final
-
-RUN apk add --no-cache tzdata
-ENV TZ="Asia/Shanghai"
-ENV DANDELION_ENV=develop
-
 WORKDIR /opt/app
 
 COPY --from=builder /go-admin/authorize/authorize .
