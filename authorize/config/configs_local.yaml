@@ -9,7 +9,7 @@ logger:
 
 rpcServer:
   serverName: "authorize"
-  registerPlugin: "etcd"
+  registerPlugin: "multiple"
   registerServers:
     - "127.0.0.1:2379"
   basePath: "go-admin-example"

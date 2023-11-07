@@ -46,7 +46,7 @@ func setup() {
 func run() error {
 	// 初始化rpc model
 	go func() {
-		application.RpcServer(new(service.RpcApi))
+		application.RpcServer(service.NewRpcApi())
 	}()
 	content, _ := ioutil.ReadFile("./static/authorize.txt")
 	fmt.Println(logger.Green(string(content)))

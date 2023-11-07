@@ -1,16 +1,24 @@
 package dao
 
 import (
+	"github.com/team-dandelion/go-dandelion/application"
 	"go-admin-example/authorize/internal/model"
-	"gorm.io/gorm"
 )
 
-var Auth authDao
-
-type authDao struct {
+type IAuth interface {
+	GetUserInfoByUserName(userName string) (user model.SysUser, err error)
 }
 
-func (d *authDao) GetUserInfoByUserName(tx *gorm.DB, userName string) (user model.SysUser, err error) {
-	err = tx.Model(model.SysUser{}).Where("username = ?", userName).First(&user).Error
+func NewAuth() IAuth {
+	return &authDao{}
+}
+
+type authDao struct {
+	application.DB
+	application.Redis
+}
+
+func (d *authDao) GetUserInfoByUserName(userName string) (user model.SysUser, err error) {
+	err = d.GetDB().Model(model.SysUser{}).Where("user_name = ?", userName).First(&user).Error
 	return
 }

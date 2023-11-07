@@ -3,13 +3,11 @@ package service
 import (
 	"context"
 	errorx "github.com/team-dandelion/go-dandelion/error-support"
-	"github.com/team-dandelion/go-dandelion/server/rpcx"
-	"go-admin-example/authorize/internal/logic"
 	"go-admin-example/common/model/authorize"
 )
 
 func (s *RpcApi) Login(ctx context.Context, req authorize.LoginParams, resp *authorize.LoginResp) error {
-	_, err := logic.Auth.Login(req)
+	_, err := s.AuthLogic.Login(req)
 	if err != nil {
 		errorx.Format(err, resp)
 		return nil
@@ -18,7 +16,7 @@ func (s *RpcApi) Login(ctx context.Context, req authorize.LoginParams, resp *aut
 }
 
 func (s *RpcApi) Logout(ctx context.Context, req authorize.LoginParams, resp *authorize.LoginResp) error {
-	err := logic.Auth.Logout(rpcx.Header().Int64Default(ctx, "user_id", 0))
+	err := s.AuthLogic.Logout(s.UserId(ctx))
 	if err != nil {
 		errorx.Format(err, resp)
 		return nil
@@ -28,7 +26,7 @@ func (s *RpcApi) Logout(ctx context.Context, req authorize.LoginParams, resp *au
 
 // GenerateCaptcha 生成验证码
 func (s *RpcApi) GenerateCaptcha(ctx context.Context, req authorize.CaptchaParams, resp *authorize.CaptchaResp) error {
-	content, id, err := logic.Auth.GenerateCaptcha()
+	content, id, err := s.AuthLogic.GenerateCaptcha()
 	if err != nil {
 		errorx.Format(err, resp)
 		return nil

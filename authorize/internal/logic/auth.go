@@ -4,7 +4,6 @@ import (
 	"github.com/gly-hub/dandelion-plugs/captcha"
 	"github.com/gly-hub/dandelion-plugs/jwt"
 	"github.com/rs/xid"
-	"github.com/team-dandelion/go-dandelion/application"
 	"github.com/team-dandelion/go-dandelion/logger"
 	"go-admin-example/authorize/internal/dao"
 	"go-admin-example/authorize/internal/enum"
@@ -13,15 +12,24 @@ import (
 	"gorm.io/gorm"
 )
 
-var Auth authLogic
+type IAuth interface {
+	Login(params authorize.LoginParams) (string, error)
+	Logout(userId int64) error
+	GenerateCaptcha() (content, id string, err error)
+}
+
+func NewAuth() IAuth {
+	return &authLogic{
+		AuthDao: dao.NewAuth(),
+	}
+}
 
 type authLogic struct {
-	application.DB
-	application.Redis
+	AuthDao dao.IAuth
 }
 
 func (l *authLogic) Login(params authorize.LoginParams) (string, error) {
-	userInfo, uErr := dao.Auth.GetUserInfoByUserName(l.GetDB(), params.UserName)
+	userInfo, uErr := l.AuthDao.GetUserInfoByUserName(params.UserName)
 	if uErr != nil && uErr != gorm.ErrRecordNotFound {
 		logger.Error(uErr)
 		return "", enum.DataBaseError
@@ -36,12 +44,11 @@ func (l *authLogic) Login(params authorize.LoginParams) (string, error) {
 		return "", enum.CaptchaError
 	}
 
-	// 生成token TODO
+	// 生成token
 	token, tErr := jwt.Token(&model.UserMeta{
-		UserId:   userInfo.UserId,
-		UserName: userInfo.Username,
-		NickName: userInfo.NickName,
-		RoleId:   userInfo.RoleId,
+		UserId:   userInfo.Id,
+		UserName: userInfo.UserName,
+		NickName: userInfo.Nickname,
 	})
 
 	if tErr != nil {
@@ -54,7 +61,8 @@ func (l *authLogic) Login(params authorize.LoginParams) (string, error) {
 
 func (l *authLogic) GenerateCaptcha() (content, id string, err error) {
 	id = xid.New().String()
-	img, cErr := captcha.Create(id)
+	img, _, cErr := captcha.Create(id)
+
 	if cErr != nil {
 		return "", id, cErr
 	}

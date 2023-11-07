@@ -24,3 +24,4 @@ COPY --from=builder /go-admin/authorize/authorize .
 COPY --from=builder /go-admin/authorize/config ./config
 EXPOSE 8999
 CMD ["/opt/app/authorize", "server"]
+

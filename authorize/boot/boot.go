@@ -11,4 +11,5 @@ func Init() {
 	// 将需要初始化的方法在该处注册
 	_ = application.Plugs(jwt.Plug(), captcha.Plug(), analysis.Plug())
 	application.RegisterRpcPlugin(analysis.RpcPrometheus())
+	DbAutoMigrate()
 }
