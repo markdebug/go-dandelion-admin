@@ -32,8 +32,8 @@ pipeline {
         stage('stage: Deploy Application'){
             steps {
                 sh """
-                    docker-compose -f ./authorize/docker/docker-compose.yml down
-                    docker-compose -f ./authorize/docker/docker-compose.yml up -d
+                    docker-compose -f ./authorize/docker/docker-compose.yml -p authorize down
+                    docker-compose -f ./authorize/docker/docker-compose.yml -p authorize up -d
                 """
             }
         }
