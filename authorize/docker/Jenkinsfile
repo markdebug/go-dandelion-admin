@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('stage: Echo Env'){
             steps {
-                echo "BRANCH_NAME: ${env.BRANCH_NAME}"
+
             }
         }
 
