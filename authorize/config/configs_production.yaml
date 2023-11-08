@@ -43,7 +43,7 @@ redis:
   startAddr: ["192.168.101.24:6379","192.168.101.24:6380","192.168.101.24:6381","192.168.101.24:6382","192.168.101.24:6383","192.168.101.24:6384"]
   active: 100
   idle: 100
-  auth: ""
+  auth: "gaoliangyong"
   connTimeout: "100ms"
   readTimeout: "100ms"
   writeTimeout: "100ms"
