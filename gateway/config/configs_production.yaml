@@ -14,15 +14,15 @@ httpServer:
 rpcClient:
   clientName: "gateway"
   basePath: "go-admin-example"
-  registerPlugin: "multiple"
+  registerPlugin: "etcd"
   registerServers:
-    - "127.0.0.1:8899"
+    - "192.168.101.24:2379"
   failRetryModel: 3
   balanceModel: 2
   poolSize: 1
 
 tracer:
-  openTrace: true
+  openTrace: false
   traceName: "gateway"
   host: "127.0.0.1:6831"
 

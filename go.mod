@@ -3,13 +3,15 @@ module go-admin-example
 go 1.20
 
 require (
-	github.com/gly-hub/dandelion-plugs v0.0.0-20231030042127-6d87ac2dffcf
+	github.com/gly-hub/dandelion-plugs v0.0.0-20231108071148-2781238e917e
 	github.com/gly-hub/fasthttp-routing v0.0.0-20230103092213-f65d0ebb75bb
 	github.com/gly-hub/toolbox v0.0.0-20230630080251-d1ee57b14759
 	github.com/rs/xid v1.4.0
 	github.com/spf13/cast v1.5.0
 	github.com/spf13/cobra v0.0.3
-	github.com/team-dandelion/go-dandelion v1.3.0
+	github.com/stretchr/testify v1.8.4
+	github.com/team-dandelion/analysis-plug v0.0.0-20231030045122-1d0b446f4ca2
+	github.com/team-dandelion/go-dandelion v1.3.1-0.20231108071102-aa6ee8fae11c
 	gorm.io/gorm v1.24.7-0.20230306060331-85eaf9eeda11
 )
 
@@ -31,6 +33,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/coreos/go-systemd/v22 v22.3.2 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/dgryski/go-jump v0.0.0-20211018200510-ba001c3ffce0 // indirect
 	github.com/edwingeng/doublejump v1.0.1 // indirect
@@ -96,6 +99,7 @@ require (
 	github.com/petermattis/goid v0.0.0-20230317030725-371a4b8eda08 // indirect
 	github.com/philhofer/fwd v1.1.2 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_golang v1.11.1 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.26.0 // indirect
@@ -122,7 +126,6 @@ require (
 	github.com/subosito/gotenv v1.4.2 // indirect
 	github.com/swaggo/files v1.0.0 // indirect
 	github.com/swaggo/swag v1.8.10 // indirect
-	github.com/team-dandelion/analysis-plug v0.0.0-20231030045122-1d0b446f4ca2 // indirect
 	github.com/templexxx/cpufeat v0.0.0-20180724012125-cef66df7f161 // indirect
 	github.com/templexxx/xor v0.0.0-20191217153810-f85b25db303b // indirect
 	github.com/tinylib/msgp v1.1.8 // indirect

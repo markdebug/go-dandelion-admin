@@ -13,9 +13,9 @@ type AuthController struct {
 }
 
 // Login
-// @Summary 登录
-// @Description 用户登录
-// @Tags 基础模块|用户登录登出
+// @Summary 用户登录
+// @Description 用户登录api接口
+// @Tags 基础模块
 // @Param deptName body auth.LoginParams true "登录参数"
 // @Success 200 {object} auth.LoginResp "{"code": 200, "data": [...]}"
 // @Router /api/login [post]
@@ -24,9 +24,9 @@ func (a *AuthController) Login(c *routing.Context) error {
 }
 
 // Captcha
-// @Summary 登录
-// @Description 验证码获取
-// @Tags 基础模块|验证码获取
+// @Summary 验证码获取
+// @Description 验证码获取api接口
+// @Tags 基础模块
 // @Param deptName body authModel.CaptchaParams true "参数"
 // @Success 200 {object} auth.LoginResp "{"code": 200, "data": [...]}"
 // @Router /api/captcha [get]
@@ -43,9 +43,9 @@ func (a *AuthController) Captcha(c *routing.Context) error {
 }
 
 // Logout
-// @Summary 登录
-// @Description 注销登录
-// @Tags 基础模块|注销登录
+// @Summary 注销登录
+// @Description 注销登录api接口
+// @Tags 基础模块
 // @Param deptName body authModel.LoginParams true "参数"
 // @Success 200 {object} auth.LoginResp "{"code": 200, "data": [...]}"
 // @Router /api/logout [delete]

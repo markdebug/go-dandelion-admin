@@ -24,7 +24,7 @@ pipeline {
         stage('stage: Build Application'){
             steps {
                 sh """
-                    docker build -f ./authorize/docker/Dockerfile -t authorize --build-arg SVC1="${__STAGE}" .
+                    docker build -f ./gateway/docker/Dockerfile -t gateway --build-arg SVC1="${__STAGE}" .
                 """
             }
         }
@@ -32,8 +32,8 @@ pipeline {
         stage('stage: Deploy Application'){
             steps {
                 sh """
-                    docker-compose -f ./authorize/docker/docker-compose.yml down
-                    docker-compose -f ./authorize/docker/docker-compose.yml up -d
+                    docker-compose -f ./gateway/docker/docker-compose.yml down
+                    docker-compose -f ./gateway/docker/docker-compose.yml up -d
                 """
             }
         }
