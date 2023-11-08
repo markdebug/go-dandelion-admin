@@ -3,22 +3,21 @@ pipeline {
     agent any
 
     stages {
-        stage('1.拉取代码'){
+        stage('stage: Pull Code'){
             steps {
-             git branch: 'main', credentialsId: 'fangao-github', url: 'git@gitee.com:codegly/go-admin.git'
+             git branch: env.BRANCH_NAME, credentialsId: 'fangao-github', url: 'git@gitee.com:codegly/go-admin.git'
             }
         }
 
-
-        stage('3.编译程序'){
+        stage('stage: Build Application'){
             steps {
                 sh """
-                    docker build -f ./authorize/docker/Dockerfile -t authorize .
+                    docker build -f ./authorize/docker/Dockerfile -t authorize --build-arg SVC1=${env.BRANCH_NAME} .
                 """
             }
         }
 
-        stage('4.部署程序'){
+        stage('stage: Deploy Application'){
             steps {
                 sh """
                     docker-compose -f ./authorize/docker/docker-compose.yml down

@@ -1,3 +1,5 @@
+ARG SVC1
+
 FROM golang:1.20 as builder
 
 ENV GO111MODULE=on \
@@ -13,6 +15,8 @@ COPY . .
 RUN go mod tidy && go build -a -o authorize ./authorize
 
 FROM alpine as final
+
+ENV DANDELION_ENV=${SVC1}
 WORKDIR /opt/app
 
 COPY --from=builder /go-admin/authorize/authorize .
