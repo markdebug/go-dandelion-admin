@@ -8,15 +8,13 @@ ENV GO111MODULE=on \
 
 WORKDIR /go-admin
 
-COPY ../.. .
+COPY . .
 
 RUN go mod tidy && go build -a -o gateway ./gateway
 
 FROM alpine as final
 
-RUN apk add --no-cache tzdata
-ENV TZ="Asia/Shanghai"
-ENV DANDELION_ENV=develop
+ENV DANDELION_ENV=${SVC1}
 
 WORKDIR /opt/app
 
