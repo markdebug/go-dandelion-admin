@@ -3,6 +3,12 @@ pipeline {
     agent any
 
     stages {
+        stage('stage: Echo Env'){
+            steps {
+                echo "BRANCH_NAME: ${env.BRANCH_NAME}"
+            }
+        }
+
         stage('stage: Pull Code'){
             steps {
              git branch: env.BRANCH_NAME, credentialsId: 'fangao-github', url: 'git@gitee.com:codegly/go-admin.git'
@@ -30,25 +36,25 @@ pipeline {
     post {
         always{
             script{
-                deleteDir()
+
             }
         }
 
         success{
             script{
-                deleteDir()
+
             }
 
         }
         failure{
             script{
-                deleteDir()
+
             }
         }
 
         aborted{
             script{
-                deleteDir()
+
             }
 
         }
