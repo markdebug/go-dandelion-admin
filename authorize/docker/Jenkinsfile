@@ -1,0 +1,57 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('1.拉取代码'){
+            steps {
+             git branch: 'main', credentialsId: 'fangao-github', url: 'git@gitee.com:codegly/go-admin.git'
+            }
+        }
+
+
+        stage('3.编译程序'){
+            steps {
+                sh """
+                    docker build -f ./authorize/docker/Dockerfile -t authorize .
+                """
+            }
+        }
+
+        stage('4.部署程序'){
+            steps {
+                sh """
+                    docker-compose -f ./authorize/docker/docker-compose.yml down
+                    docker-compose -f ./authorize/docker/docker-compose.yml up -d
+                """
+            }
+        }
+    }
+
+    post {
+        always{
+            script{
+                deleteDir()
+            }
+        }
+
+        success{
+            script{
+                deleteDir()
+            }
+
+        }
+        failure{
+            script{
+                deleteDir()
+            }
+        }
+
+        aborted{
+            script{
+                deleteDir()
+            }
+
+        }
+    }
+}
