@@ -32,8 +32,8 @@ pipeline {
         stage('stage: Deploy Application'){
             steps {
                 sh """
-                    docker-compose -f ./gateway/docker/docker-compose.yml down
-                    docker-compose -f ./gateway/docker/docker-compose.yml up -d
+                    docker-compose -f ./gateway/docker/docker-compose.yml -p gateway down
+                    docker-compose -f ./gateway/docker/docker-compose.yml -p gateway up -d
                 """
             }
         }

@@ -6,3 +6,9 @@ services:
     ports:
       - "8099:8099"
       - "8089:8089"
+    networks:
+      - rpcnetwork
+
+networks:
+  rpcnetwork:
+    external: true

@@ -7,3 +7,9 @@ services:
       - "8899:8899"
       - "18899:18899"
       - "8999:8999"
+    networks:
+      - rpcnetwork
+
+networks:
+  rpcnetwork:
+    external: true
