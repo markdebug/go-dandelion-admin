@@ -14,7 +14,7 @@ RUN go mod tidy && go build -a -o gateway ./gateway
 
 FROM alpine as final
 
-ENV DANDELION_ENV=${SVC1}
+ENV DANDELION_ENV="production"
 
 WORKDIR /opt/app
 
