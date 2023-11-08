@@ -1,24 +1,29 @@
 
 pipeline {
     agent any
-
+    environment {
+        //以上自定义的参数
+        __BRANCH = "main"
+        __GIT_URL = "git@gitee.com:codegly/go-admin.git"
+    }
     stages {
         stage('stage: Echo Env'){
             steps {
-                echo "${env.BRANCH_NAME}"
+                echo "${__BRANCH}"
+                echo "${__GIT_URL}"
             }
         }
 
         stage('stage: Pull Code'){
             steps {
-             git branch: env.BRANCH_NAME, credentialsId: 'fangao-github', url: 'git@gitee.com:codegly/go-admin.git'
+             git branch: "${__BRANCH}", credentialsId: 'fangao-github', url: "${__GIT_URL}"
             }
         }
 
         stage('stage: Build Application'){
             steps {
                 sh """
-                    docker build -f ./authorize/docker/Dockerfile -t authorize --build-arg SVC1=${env.BRANCH_NAME} .
+                    docker build -f ./authorize/docker/Dockerfile -t authorize --build-arg SVC1="${__BRANCH}" .
                 """
             }
         }
