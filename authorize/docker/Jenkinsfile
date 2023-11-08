@@ -36,25 +36,25 @@ pipeline {
     post {
         always{
             script{
-
+                deleteDir()
             }
         }
 
         success{
             script{
-
+                deleteDir()
             }
 
         }
         failure{
             script{
-
+                deleteDir()
             }
         }
 
         aborted{
             script{
-
+                deleteDir()
             }
 
         }
