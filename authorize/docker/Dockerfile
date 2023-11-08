@@ -19,6 +19,8 @@ FROM alpine as final
 ENV DANDELION_ENV=${SVC1}
 WORKDIR /opt/app
 
+RUN echo $DANDELION_ENV
+
 COPY --from=builder /go-admin/authorize/authorize .
 COPY --from=builder /go-admin/authorize/config ./config
 EXPOSE 8999
