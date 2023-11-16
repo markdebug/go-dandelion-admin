@@ -11,7 +11,7 @@ require (
 	github.com/spf13/cobra v0.0.3
 	github.com/stretchr/testify v1.8.4
 	github.com/team-dandelion/analysis-plug v0.0.0-20231030045122-1d0b446f4ca2
-	github.com/team-dandelion/go-dandelion v1.3.1-0.20231108071102-aa6ee8fae11c
+	github.com/team-dandelion/go-dandelion v1.3.1-0.20231116080531-7b3f36278354
 	gorm.io/gorm v1.24.7-0.20230306060331-85eaf9eeda11
 )
 
