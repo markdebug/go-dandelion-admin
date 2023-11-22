@@ -13,7 +13,7 @@ services:
     logging:
       driver: loki
       options:
-        loki-url: http://loki.mrgogh.work/api/prom/push"
+        loki-url: http://loki.mrgogh.work/loki/api/v1/push
         loki-retries: "5"
         loki-batch-size: "400"
 
