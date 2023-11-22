@@ -8,6 +8,12 @@ services:
       - "8089:8089"
     networks:
       - rpcnetwork
+    logging:
+      driver: loki
+      options:
+        loki-url: http://loki.mrgogh.work/loki/api/v1/push
+        loki-retries: "5"
+        loki-batch-size: "400"
 
 networks:
   rpcnetwork:
