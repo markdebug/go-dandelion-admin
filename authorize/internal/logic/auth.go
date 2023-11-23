@@ -1,21 +1,21 @@
 package logic
 
 import (
-	"github.com/gly-hub/dandelion-plugs/captcha"
 	"github.com/gly-hub/dandelion-plugs/jwt"
-	"github.com/rs/xid"
 	"github.com/team-dandelion/go-dandelion/logger"
+	"go-admin-example/authorize/Tools"
 	"go-admin-example/authorize/internal/dao"
 	"go-admin-example/authorize/internal/enum"
 	"go-admin-example/authorize/internal/model"
-	"go-admin-example/common/model/authorize"
+	authModel "go-admin-example/common/model/authorize"
 	"gorm.io/gorm"
 )
 
 type IAuth interface {
-	Login(params authorize.LoginParams) (string, error)
-	Logout(userId int64) error
-	GenerateCaptcha() (content, id string, err error)
+	Login(params authModel.LoginParams) (string, error)
+	Logout(opt model.CtxOption) error
+	VerifyPermission(params authModel.VerifyPermissionParams) (meta model.UserMeta, err error)
+	GetUserMenus(opt model.CtxOption) (menus []model.SysMenu, err error)
 }
 
 func NewAuth() IAuth {
@@ -28,20 +28,18 @@ type authLogic struct {
 	AuthDao dao.IAuth
 }
 
-func (l *authLogic) Login(params authorize.LoginParams) (string, error) {
+// Login 登录
+func (l *authLogic) Login(params authModel.LoginParams) (string, error) {
 	userInfo, uErr := l.AuthDao.GetUserInfoByUserName(params.UserName)
 	if uErr != nil && uErr != gorm.ErrRecordNotFound {
 		logger.Error(uErr)
 		return "", enum.DataBaseError
 	}
 
-	// 0判断信息
+	// 判断信息
+	params.Password = Tools.Md5V(params.Password)
 	if uErr == gorm.ErrRecordNotFound || userInfo.Password != params.Password {
 		return "", enum.UserNameOrPasswordError
-	}
-
-	if !captcha.Verify(params.CaptchaId, params.CaptchaCode) {
-		return "", enum.CaptchaError
 	}
 
 	// 生成token
@@ -49,6 +47,7 @@ func (l *authLogic) Login(params authorize.LoginParams) (string, error) {
 		UserId:   userInfo.Id,
 		UserName: userInfo.UserName,
 		NickName: userInfo.Nickname,
+		IsSuper:  userInfo.IsSuper,
 	})
 
 	if tErr != nil {
@@ -59,20 +58,26 @@ func (l *authLogic) Login(params authorize.LoginParams) (string, error) {
 	return token, nil
 }
 
-func (l *authLogic) GenerateCaptcha() (content, id string, err error) {
-	id = xid.New().String()
-	img, _, cErr := captcha.Create(id)
-
-	if cErr != nil {
-		return "", id, cErr
-	}
-	content = img.Base64()
-	return content, id, nil
-}
-
-func (l *authLogic) Logout(userId int64) error {
+// Logout 登出
+func (l *authLogic) Logout(opt model.CtxOption) error {
 	_ = jwt.Del(&model.UserMeta{
-		UserId: userId,
+		UserId: opt.UserId,
 	})
 	return nil
+}
+
+// VerifyPermission 校验权限
+func (l *authLogic) VerifyPermission(params authModel.VerifyPermissionParams) (
+	meta model.UserMeta, err error) {
+	err = jwt.Parse(params.Token, &meta)
+	return
+}
+
+// GetUserMenus 获取用户菜单列表
+func (l *authLogic) GetUserMenus(opt model.CtxOption) (menus []model.SysMenu, err error) {
+	menus, err = l.AuthDao.GetUserMenus(model.UserMenusFilter{
+		UserId:  opt.UserId,
+		IsSuper: opt.IsSuper,
+	})
+	return
 }

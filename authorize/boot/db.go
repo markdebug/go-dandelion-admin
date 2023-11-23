@@ -46,9 +46,9 @@ func migrate() bool {
 	}()
 
 	for _, model := range models {
-		if dbIns.Migrator().HasTable(model) {
-			continue
-		}
+		//if dbIns.Migrator().HasTable(model) {
+		//	continue
+		//}
 		err = dbIns.Migrator().AutoMigrate(model)
 		dbIns.Exec(fmt.Sprintf("ALTER TABLE %s COMMENT '%s'", model.TableName(), model.TableComment()))
 		if err != nil {

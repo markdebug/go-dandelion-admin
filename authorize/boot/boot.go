@@ -1,7 +1,6 @@
 package boot
 
 import (
-	"github.com/gly-hub/dandelion-plugs/captcha"
 	"github.com/gly-hub/dandelion-plugs/jwt"
 	"github.com/team-dandelion/analysis-plug"
 	"github.com/team-dandelion/go-dandelion/application"
@@ -9,7 +8,7 @@ import (
 
 func Init() {
 	// 将需要初始化的方法在该处注册
-	_ = application.Plugs(jwt.Plug(), captcha.Plug(), analysis.Plug())
+	_ = application.Plugs(jwt.Plug(), analysis.Plug())
 	application.RegisterRpcPlugin(analysis.RpcPrometheus())
 	DbAutoMigrate()
 }

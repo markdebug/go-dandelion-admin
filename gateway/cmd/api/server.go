@@ -50,7 +50,11 @@ func setup() {
 }
 
 func HeaderFunc(ctx *routing.Context, data map[string]string) map[string]string {
-	// 自定义头部链路。该方法能将需要的参数通过rpc进行传递 TODO
+	// 自定义头部链路。该方法能将需要的参数通过rpc进行传递
+	data["UserId"] = ctx.Header.Value("UserId")
+	data["UserName"] = ctx.Header.Value("UserName")
+	data["IsSuper"] = ctx.Header.Value("IsSuper")
+	data["Nickname"] = ctx.Header.Value("Nickname")
 
 	return data
 }

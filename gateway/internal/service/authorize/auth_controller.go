@@ -23,25 +23,6 @@ func (a *AuthController) Login(c *routing.Context) error {
 	return application.SRpcCall(c, rpcService.AuthorizeService, rpcService.AuthorizeFuncLogin, new(authModel.LoginParams), new(authModel.LoginResp))
 }
 
-// Captcha
-// @Summary 验证码获取
-// @Description 验证码获取api接口
-// @Tags 基础模块
-// @Param deptName body authModel.CaptchaParams true "参数"
-// @Success 200 {object} auth.LoginResp "{"code": 200, "data": [...]}"
-// @Router /api/captcha [get]
-func (a *AuthController) Captcha(c *routing.Context) error {
-	var (
-		req  = new(authModel.CaptchaParams)
-		resp = new(authModel.CaptchaResp)
-	)
-	err := application.RpcCall(c, rpcService.AuthorizeService, rpcService.AuthorizeFuncGenerateCaptcha, req, resp)
-	if err != nil {
-		return a.Fail(c, err)
-	}
-	return a.Success(c, resp, "")
-}
-
 // Logout
 // @Summary 注销登录
 // @Description 注销登录api接口
@@ -54,7 +35,26 @@ func (a *AuthController) Logout(c *routing.Context) error {
 		req  = new(authModel.LoginParams)
 		resp = new(authModel.LoginResp)
 	)
-	err := application.RpcCall(c, rpcService.AuthorizeService, rpcService.AuthorizeFuncGenerateCaptcha, req, resp)
+	err := application.RpcCall(c, rpcService.AuthorizeService, rpcService.AuthorizeFuncLogout, req, resp)
+	if err != nil {
+		return a.Fail(c, err)
+	}
+	return a.Success(c, resp, "")
+}
+
+// UserMenus
+// @Summary 注销登录
+// @Description 注销登录api接口
+// @Tags 基础模块
+// @Param deptName body authModel.LoginParams true "参数"
+// @Success 200 {object} auth.LoginResp "{"code": 200, "data": [...]}"
+// @Router /api/user)menu [get]
+func (a *AuthController) UserMenus(c *routing.Context) error {
+	var (
+		req  = new(authModel.GetUserMenusParams)
+		resp = new(authModel.GetUserMenusResp)
+	)
+	err := application.RpcCall(c, rpcService.AuthorizeService, rpcService.AuthorizeFuncGetUserMenus, req, resp)
 	if err != nil {
 		return a.Fail(c, err)
 	}

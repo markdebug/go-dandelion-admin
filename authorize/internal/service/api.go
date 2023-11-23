@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/team-dandelion/go-dandelion/server/rpcx"
 	"go-admin-example/authorize/internal/logic"
+	"go-admin-example/authorize/internal/model"
 )
 
 type RpcApi struct {
@@ -16,6 +17,10 @@ func NewRpcApi() *RpcApi {
 	}
 }
 
-func (s *RpcApi) UserId(ctx context.Context) int64 {
-	return rpcx.Header().Int64Default(ctx, "user_id", 0)
+func (s *RpcApi) CtxOption(ctx context.Context) model.CtxOption {
+	return model.CtxOption{
+		UserName: rpcx.Header().Value(ctx, "UserName"),
+		UserId:   rpcx.Header().Int32Default(ctx, "UserId", 0),
+		IsSuper:  rpcx.Header().BoolDefault(ctx, "IsSuper", false),
+	}
 }
