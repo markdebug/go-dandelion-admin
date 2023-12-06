@@ -6,12 +6,10 @@ require (
 	github.com/gly-hub/dandelion-plugs v0.0.0-20231108071148-2781238e917e
 	github.com/gly-hub/fasthttp-routing v0.0.0-20230103092213-f65d0ebb75bb
 	github.com/gly-hub/toolbox v0.0.0-20230630080251-d1ee57b14759
-	github.com/rs/xid v1.4.0
-	github.com/spf13/cast v1.5.0
 	github.com/spf13/cobra v0.0.3
 	github.com/stretchr/testify v1.8.4
 	github.com/team-dandelion/analysis-plug v0.0.0-20231030045122-1d0b446f4ca2
-	github.com/team-dandelion/go-dandelion v1.3.1-0.20231116080531-7b3f36278354
+	github.com/team-dandelion/go-dandelion v1.3.1-0.20231206133308-2eb1e8d9abb9
 	gorm.io/gorm v1.24.7-0.20230306060331-85eaf9eeda11
 )
 
@@ -113,6 +111,7 @@ require (
 	github.com/rpcxio/rpcx-etcd v0.2.0 // indirect
 	github.com/rpcxio/rpcx-zookeeper v0.0.0-20220730061732-d20531677676 // indirect
 	github.com/rs/cors v1.8.3 // indirect
+	github.com/rs/xid v1.4.0 // indirect
 	github.com/rubyist/circuitbreaker v2.2.1+incompatible // indirect
 	github.com/samuel/go-zookeeper v0.0.0-20201211165307-7117e9ea2414 // indirect
 	github.com/shirou/gopsutil/v3 v3.21.6 // indirect
@@ -120,6 +119,7 @@ require (
 	github.com/smallnest/rpcx v1.8.7 // indirect
 	github.com/soheilhy/cmux v0.1.5 // indirect
 	github.com/spf13/afero v1.9.3 // indirect
+	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.15.0 // indirect
