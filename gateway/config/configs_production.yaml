@@ -22,9 +22,9 @@ rpcClient:
   poolSize: 1
 
 tracer:
-  openTrace: false
+  openTrace: true
   traceName: "gateway"
-  host: "127.0.0.1:6831"
+  host: "192.168.101.24:6831"
 
 analysisServer:
   type: "http"

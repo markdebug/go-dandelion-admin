@@ -50,9 +50,9 @@ redis:
   idleTimeout: "100ms"
 
 tracer:
-  openTrace: false
+  openTrace: true
   traceName: "authorize"
-  host: "127.0.0.1:6831"
+  host: "192.168.101.24:6831"
 
 captcha:
   length: 6
