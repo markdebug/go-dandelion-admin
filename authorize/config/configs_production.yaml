@@ -15,7 +15,6 @@ rpcServer:
   basePath: "go-admin-example"
   addr: ""
   port: 8899
-  pprof: 18899
 
 db:
   dbType: "mysql"

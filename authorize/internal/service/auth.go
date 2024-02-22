@@ -50,7 +50,7 @@ func (s *RpcApi) GetUserMenus(ctx context.Context, req authorize.GetUserMenusPar
 	}
 
 	// 构建结果
-	resp.Menus = s.buildMenuTree(0, menus)
+	resp.Menu = s.buildMenuTree(0, menus)
 	return nil
 }
 
@@ -59,14 +59,16 @@ func (s *RpcApi) buildMenuTree(parentId int32, menus []model.SysMenu) (tree []au
 	for _, m := range menus {
 		if m.ParentId == parentId {
 			tree = append(tree, authorize.UserMenu{
-				Id:        m.Id,
-				MenuType:  m.MenuType,
-				MenuCode:  m.Code,
-				Title:     m.Title,
-				Icon:      m.Icon,
-				Component: m.Component,
-				Path:      m.Path,
+				Name: m.Code,
+				Path: m.Path,
+				Meta: authorize.UserMenuMeta{
+					Icon:  m.Icon,
+					Title: m.Title,
+					Type:  m.MenuType,
+					Affix: m.Affix,
+				},
 				Sort:      m.Sort,
+				Component: m.Component,
 				Children:  s.buildMenuTree(m.Id, menus),
 			})
 		}

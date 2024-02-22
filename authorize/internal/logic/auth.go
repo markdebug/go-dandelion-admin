@@ -77,7 +77,7 @@ func (l *authLogic) VerifyPermission(params authModel.VerifyPermissionParams) (
 func (l *authLogic) GetUserMenus(opt model.CtxOption) (menus []model.SysMenu, err error) {
 	menus, err = l.AuthDao.GetUserMenus(model.UserMenusFilter{
 		UserId:  opt.UserId,
-		IsSuper: opt.IsSuper,
+		IsSuper: true,
 	})
 	return
 }

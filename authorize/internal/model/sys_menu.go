@@ -11,11 +11,12 @@ type SysMenu struct {
 	Code      string `gorm:"type:varchar(128);not null;default:'';comment:菜单编号"`
 	Title     string `gorm:"type:varchar(128);not null;default:'';comment:显示名称"`
 	Icon      string `gorm:"type:varchar(128);not null;default:'';comment:菜单图标"`
-	MenuType  int32  `gorm:"type:int;not null;default:0;comment:菜单类型"` // 1 菜单 2 页面 3按钮
+	MenuType  string `gorm:"type:varchar(64);not null;default:'';comment:菜单类型"` // module 模块 menu 菜单 3 按钮
 	ParentId  int32  `gorm:"type:int;not null;default:0;comment:父菜单ID"`
 	Component string `gorm:"type:varchar(256);not null;default:'';comment:前端组件"`
 	Path      string `gorm:"type:varchar(256);not null;default:'';comment:路由地址"`
 	Sort      int32  `gorm:"type:int;not null;default:0;comment:排序标记"`
+	Affix     bool   `gorm:"type:tinyint(1);not null;default:0;comment:固定地址栏"`
 	Status    int32  `gorm:"type:tinyint(2);not null;default:1;comment:菜单状态 1-正常 2-停用"`
 	CreatedAt int64  `gorm:"type:bigint(20);not null;default:0;comment:创建时间"`
 	CreatedBy string `gorm:"type:varchar(128);not null;default:'';comment:创建人"`

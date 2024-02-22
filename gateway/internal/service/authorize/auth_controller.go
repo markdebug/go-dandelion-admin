@@ -48,7 +48,7 @@ func (a *AuthController) Logout(c *routing.Context) error {
 // @Tags 基础模块
 // @Param deptName body authModel.LoginParams true "参数"
 // @Success 200 {object} auth.LoginResp "{"code": 200, "data": [...]}"
-// @Router /api/user)menu [get]
+// @Router /api/user/menu [get]
 func (a *AuthController) UserMenus(c *routing.Context) error {
 	var (
 		req  = new(authModel.GetUserMenusParams)

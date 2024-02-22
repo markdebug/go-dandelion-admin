@@ -4,13 +4,21 @@ import "go-admin-example/common/model/lib"
 
 type (
 	LoginParams struct {
-		UserName string `json:"user_name"` // 用户名
-		Password string `json:"password"`  // 登录密码
+		UserName string `json:"username"` // 用户名
+		Password string `json:"password"` // 登录密码
 	}
 
 	LoginResp struct {
-		Token string `json:"token"`
+		Token    string   `json:"token"`
+		UserInfo UserInfo `json:"userInfo"`
 		lib.Response
+	}
+
+	UserInfo struct {
+		UserId    string   `json:"userId"`
+		UserName  string   `json:"userName"`
+		Role      []string `json:"role"`
+		Dashboard string   `json:"dashboard"`
 	}
 )
 
@@ -45,18 +53,25 @@ type (
 
 	GetUserMenusResp struct {
 		lib.Response
-		Menus []UserMenu `json:"menus"`
+		DashboardGrid []string   `json:"dashboardGrid"`
+		Menu          []UserMenu `json:"menu"`
+		Permissions   []string   `json:"permissions"`
 	}
 
 	UserMenu struct {
-		Id        int32      `json:"id"`
-		MenuType  int32      `json:"menu_type"`
-		MenuCode  string     `json:"menu_code"`
-		Title     string     `json:"title"`
-		Icon      string     `json:"icon"`
-		Component string     `json:"component"`
-		Path      string     `json:"path"`
-		Sort      int32      `json:"sort"`
-		Children  []UserMenu `json:"children"`
+		Name      string       `json:"name"`
+		Path      string       `json:"path"`
+		Sort      int32        `json:"sort"`
+		Meta      UserMenuMeta `json:"meta"`
+		Component string       `json:"component"`
+		Children  []UserMenu   `json:"children"`
+	}
+
+	UserMenuMeta struct {
+		Icon  string `json:"icon"`
+		Title string `json:"title"`
+		Type  string `json:"type"`
+		Tag   string `json:"tag"`
+		Affix bool   `json:"affix"`
 	}
 )
