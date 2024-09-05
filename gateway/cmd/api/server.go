@@ -11,7 +11,6 @@ import (
 	"github.com/team-dandelion/go-dandelion/logger"
 	"go-admin-example/gateway/boot"
 	"go-admin-example/gateway/internal/route"
-	"io/ioutil"
 	"os"
 	"os/signal"
 )
@@ -64,7 +63,7 @@ func run() error {
 	go func() {
 		application.HttpServer().Server()
 	}()
-	content, _ := ioutil.ReadFile("./static/gateway.txt")
+	content, _ := os.ReadFile("./static/gateway.txt")
 	fmt.Println(logger.Green(string(content)))
 	fmt.Println(logger.Green("Server run at:"))
 	fmt.Printf("-  Local:   http://localhost:%d/ \r\n", application.HttpServer().Port())
